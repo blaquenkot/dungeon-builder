@@ -1,5 +1,7 @@
 // @flow
 
+import Level from '../models/Level';
+
 import {
   name as spikeImageName,
   path as spikeImagePath
@@ -28,35 +30,53 @@ class BuildState extends Phaser.State {
   create() {
     this.points = [];
 
+    this.currentTile = 0;
+
     this.game.stage.backgroundColor = '#2d2d2d';
 
-    //  Creates a blank tilemap
     this.map = this.game.add.tilemap();
 
-    //  Add a Tileset image to the map
     this.map.addTilesetImage(blocksSpritesheetName);
-    this.map.addTilesetImage(spikeImageName, spikeImageName, 32, 32, 0, 0, 16);
+    this.map.addTilesetImage(
+      spikeImageName,
+      spikeImageName,
+      Level.GRID_SIZE,
+      Level.GRID_SIZE,
+      0,
+      0,
+      16
+    );
     this.map.addTilesetImage(
       characterImageName,
       characterImageName,
-      32,
-      32,
+      Level.GRID_SIZE,
+      Level.GRID_SIZE,
       0,
       0,
-      32
+      Level.GRID_SIZE
     );
-    this.map.addTilesetImage(flagImageName, flagImageName, 32, 32, 0, 0, 48);
+    this.map.addTilesetImage(
+      flagImageName,
+      flagImageName,
+      Level.GRID_SIZE,
+      Level.GRID_SIZE,
+      0,
+      0,
+      48
+    );
 
-    //  Creates a new blank layer and sets the map dimensions.
-    //  In this case the map is 40x30 tiles in size and the tiles are 32x32 pixels in size.
-    this.layer = this.map.create('level1', 40, 30, 32, 32);
+    this.layer = this.map.create(
+      '',
+      Level.WIDTH,
+      Level.HEIGHT,
+      Level.GRID_SIZE,
+      Level.GRID_SIZE
+    );
     this.layer.scrollFactorX = 0.5;
     this.layer.scrollFactorY = 0.5;
 
-    //  Resize the world
     this.layer.resizeWorld();
 
-    //  Create our tile selector at the top of the screen
     this.createTileSelector();
 
     this.game.input.addMoveCallback(this.updateMarker, this);
@@ -64,10 +84,10 @@ class BuildState extends Phaser.State {
 
   pickTile(sprite: any, pointer: any) {
     this.currentTile =
-      this.game.math.snapToFloor(pointer.x, 32) / 32 +
-      this.game.math.snapToFloor(pointer.y, 32) / 32 * 16;
-
-    console.log(this.currentTile);
+      this.game.math.snapToFloor(pointer.x, Level.GRID_SIZE) / Level.GRID_SIZE +
+      this.game.math.snapToFloor(pointer.y, Level.GRID_SIZE) /
+        Level.GRID_SIZE *
+        16;
 
     if (pointer.y >= 96) {
       this.blockInfo = { type: 'Goal' };
@@ -82,9 +102,11 @@ class BuildState extends Phaser.State {
 
   updateMarker() {
     this.marker.x =
-      this.layer.getTileX(this.game.input.activePointer.worldX) * 32;
+      this.layer.getTileX(this.game.input.activePointer.worldX) *
+      Level.GRID_SIZE;
     this.marker.y =
-      this.layer.getTileY(this.game.input.activePointer.worldY) * 32;
+      this.layer.getTileY(this.game.input.activePointer.worldY) *
+      Level.GRID_SIZE;
 
     if (this.game.input.mousePointer.isDown && this.marker.y >= 128) {
       this.map.putTile(
@@ -142,7 +164,7 @@ class BuildState extends Phaser.State {
     //  Our painting marker
     this.marker = this.game.add.graphics();
     this.marker.lineStyle(2, 0x000000, 1);
-    this.marker.drawRect(0, 0, 32, 32);
+    this.marker.drawRect(0, 0, Level.GRID_SIZE, Level.GRID_SIZE);
   }
 }
 
