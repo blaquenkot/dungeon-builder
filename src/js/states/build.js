@@ -124,8 +124,6 @@ class BuildState extends Phaser.State {
       };
       var point = Object.assign({}, this.blockInfo, position);
       this.points.push(point);
-
-      console.log(this.points);
     }
   }
 
