@@ -1,4 +1,5 @@
 // @flow
+import { ENTITY_TYPES, BLOCK_TYPES } from './LevelLoader';
 import type { LevelData } from './LevelLoader';
 import Goal from './entities/Goal';
 import Player from './entities/Player';
@@ -26,8 +27,9 @@ class Level {
       return this.goal;
     }
 
-    // TODO: Extract magic string to a constant
-    const goalData = this.data.entities.find(entity => entity.type === 'Goal');
+    const goalData = this.data.entities.find(
+      entity => entity.type === ENTITY_TYPES.GOAL
+    );
 
     if (!goalData) {
       throw new Error('Goal not found in level');
@@ -50,9 +52,8 @@ class Level {
       return this.player;
     }
 
-    // TODO: Extract magic string to a constant
     const playerData = this.data.entities.find(
-      entity => entity.type === 'Player'
+      entity => entity.type === ENTITY_TYPES.PLAYER
     );
 
     if (!playerData) {
@@ -78,7 +79,11 @@ class Level {
     }
 
     this.platforms = this.data.entities
-      .filter(data => data.type === 'Block' && data.blockType === 'Platform')
+      .filter(
+        data =>
+          data.type === ENTITY_TYPES.BLOCK &&
+          data.blockType === BLOCK_TYPES.PLATFORM
+      )
       .map(data => {
         if (!this.state) {
           throw new Error('State required to instantiate a platform');
@@ -103,7 +108,11 @@ class Level {
     }
 
     this.spikes = this.data.entities
-      .filter(data => data.type === 'Block' && data.blockType === 'Spike')
+      .filter(
+        data =>
+          data.type === ENTITY_TYPES.BLOCK &&
+          data.blockType === BLOCK_TYPES.SPIKE
+      )
       .map(data => {
         if (!this.state) {
           throw new Error('State required to instantiate a spike');
