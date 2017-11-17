@@ -52,133 +52,132 @@ export type LevelData = {
 
 const FAKE_LEVEL: LevelData = {
   entities: [
-    // TODO: Use same type of coordinates for player/goal than for blocks
-    { type: ENTITY_TYPES.PLAYER, position: { x: 120, y: 20 } },
-    { type: ENTITY_TYPES.GOAL, position: { x: 600, y: 640 - 64 } },
+    { type: ENTITY_TYPES.PLAYER, position: { x: 4, y: 1 } },
+    { type: ENTITY_TYPES.GOAL, position: { x: 20, y: 18 } }, // TODO: Use Level.HEIGHT
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 0, y: 0 }
+      position: { x: 0, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 1, y: 0 }
+      position: { x: 1, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 2, y: 0 }
+      position: { x: 2, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 3, y: 0 }
+      position: { x: 3, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 4, y: 0 }
+      position: { x: 4, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 5, y: 0 }
+      position: { x: 5, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 6, y: 0 }
+      position: { x: 6, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 7, y: 0 }
+      position: { x: 7, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 8, y: 0 }
+      position: { x: 8, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 9, y: 0 }
+      position: { x: 9, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 10, y: 0 }
+      position: { x: 10, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.SPIKE,
-      position: { x: 11, y: 0 }
+      position: { x: 11, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.SPIKE,
-      position: { x: 12, y: 0 }
+      position: { x: 12, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.SPIKE,
-      position: { x: 13, y: 0 }
+      position: { x: 13, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 14, y: 0 }
+      position: { x: 14, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 15, y: 0 }
+      position: { x: 15, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 16, y: 0 }
+      position: { x: 16, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 17, y: 0 }
+      position: { x: 17, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 18, y: 0 }
+      position: { x: 18, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 19, y: 0 }
+      position: { x: 19, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 20, y: 0 }
+      position: { x: 20, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 21, y: 0 }
+      position: { x: 21, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 22, y: 0 }
+      position: { x: 22, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 23, y: 0 }
+      position: { x: 23, y: 19 }
     },
     {
       type: ENTITY_TYPES.BLOCK,
       blockType: BLOCK_TYPES.PLATFORM,
-      position: { x: 24, y: 0 }
+      position: { x: 24, y: 19 }
     }
   ]
 };
