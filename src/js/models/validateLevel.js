@@ -28,6 +28,10 @@ function validateLevel(
     errors.push('The level must have only one player');
   }
 
+  if (entitiesOverlap(data)) {
+    errors.push('Entities cannot overlap');
+  }
+
   return [errors, warnings];
 }
 
@@ -50,6 +54,21 @@ function hasMultiplePlayers(data: LevelData): boolean {
     data.entities.filter(entity => entity.type === ENTITY_TYPES.PLAYER).length >
     1
   );
+}
+
+function entitiesOverlap(data: LevelData): boolean {
+  const positions = new Set();
+
+  return data.entities.some(entity => {
+    const position = (entity.position.x << 16) | entity.position.y;
+
+    if (positions.has(position)) {
+      return true;
+    } else {
+      positions.add(position);
+      return false;
+    }
+  });
 }
 
 export default validateLevel;
