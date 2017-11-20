@@ -1,4 +1,5 @@
 // @flow
+import { ENTITY_TYPES, BLOCK_TYPES } from './LevelLoader';
 import type { LevelData } from './LevelLoader';
 import Goal from './entities/Goal';
 import Player from './entities/Player';
@@ -26,8 +27,9 @@ class Level {
       return this.goal;
     }
 
-    // TODO: Extract magic string to a constant
-    const goalData = this.data.entities.find(entity => entity.type === 'Goal');
+    const goalData = this.data.entities.find(
+      entity => entity.type === ENTITY_TYPES.GOAL
+    );
 
     if (!goalData) {
       throw new Error('Goal not found in level');
@@ -39,8 +41,8 @@ class Level {
 
     this.goal = new Goal(
       this.state.game,
-      goalData.position.x,
-      goalData.position.y
+      goalData.position.x * Level.GRID_SIZE,
+      goalData.position.y * Level.GRID_SIZE
     );
     return this.goal;
   }
@@ -50,9 +52,8 @@ class Level {
       return this.player;
     }
 
-    // TODO: Extract magic string to a constant
     const playerData = this.data.entities.find(
-      entity => entity.type === 'Player'
+      entity => entity.type === ENTITY_TYPES.PLAYER
     );
 
     if (!playerData) {
@@ -65,8 +66,8 @@ class Level {
 
     this.player = new Player(
       this.state.game,
-      playerData.position.x,
-      playerData.position.y
+      playerData.position.x * Level.GRID_SIZE,
+      playerData.position.y * Level.GRID_SIZE
     );
 
     return this.player;
@@ -78,7 +79,11 @@ class Level {
     }
 
     this.platforms = this.data.entities
-      .filter(data => data.type === 'Block' && data.blockType === 'Platform')
+      .filter(
+        data =>
+          data.type === ENTITY_TYPES.BLOCK &&
+          data.blockType === BLOCK_TYPES.PLATFORM
+      )
       .map(data => {
         if (!this.state) {
           throw new Error('State required to instantiate a platform');
@@ -90,7 +95,7 @@ class Level {
         return new Platform(
           this.state.game,
           data.position.x * Level.GRID_SIZE,
-          this.state.game.world.height - Level.GRID_SIZE * (data.position.y + 1)
+          data.position.y * Level.GRID_SIZE
         );
       });
 
@@ -103,7 +108,11 @@ class Level {
     }
 
     this.spikes = this.data.entities
-      .filter(data => data.type === 'Block' && data.blockType === 'Spike')
+      .filter(
+        data =>
+          data.type === ENTITY_TYPES.BLOCK &&
+          data.blockType === BLOCK_TYPES.SPIKE
+      )
       .map(data => {
         if (!this.state) {
           throw new Error('State required to instantiate a spike');
@@ -115,7 +124,7 @@ class Level {
         return new Spike(
           this.state.game,
           data.position.x * Level.GRID_SIZE,
-          this.state.game.world.height - Level.GRID_SIZE * (data.position.y + 1)
+          data.position.y * Level.GRID_SIZE
         );
       });
 
